@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <script src="node_modules/jquery/dist/jquery.min.js"></script>
+  <link rel="stylesheet" href="dist/jquery-simple-modal.css">
+  <script src="dist/jquery-simple-modal.js"></script>
+  <style>
+  .modal-content {
+    display: none;
+    width: 50%;
+    padding: 10px;
+    background-color: #fff;
+  }
+  </style>
+</head>
+<body>
+  <h1>Basic use</h1>
+  <div id="basic" class="modal-content">
+    <div><a href="#content1">content1</a></div>
+    <div><a href="#content2">content2</a></div>
+    <hr>
+    <button type="button" id="basic_ok">OK</button>
+    <button type="button" id="basic_cancel">Cancel</button>
+  </div>
+  <button type="button" id="basic_opener">Open</button>
+  <script>
+  $('#basic').simpleModal({
+    opener: '#basic_opener',
+    closer: '#basic_ok,#basic_cancel',
+    focus: '#basic_ok'
+  });
+  </script>
+
+  <h1>Callback</h1>
+  <div id="callback" class="modal-content">
+    <div><a href="#content1">content1</a></div>
+    <div><a href="#content2">content2</a></div>
+    <hr>
+    <button type="button" id="callback_ok">OK</button>
+    <button type="button" id="callback_cancel">Cancel</button>
+  </div>
+  <button type="button" id="callback_opener">Open</button>
+  <script>
+  $('#callback').simpleModal({
+    opener: '#callback_opener',
+    closer: '#callback_ok,#callback_cancel'
+  }).on('modal:open', function(e, $elem) {
+    console.log('opened by ' + $elem.attr('id'));
+  }).on('modal:close', function(e, $elem) {
+    console.log('closed by ' + $elem.attr('id'));
+  });
+  </script>
+
+  <h1>Disable closing by modal click or ESC keydown</h1>
+  <div id="closing" class="modal-content">
+    <div><a href="#content1">content1</a></div>
+    <div><a href="#content2">content2</a></div>
+    <hr>
+    <button type="button" id="closing_ok">OK</button>
+    <button type="button" id="closing_cancel">Cancel</button>
+  </div>
+  <button type="button" id="closing_opener">Open</button>
+  <script>
+  $('#closing').simpleModal({
+    opener: '#closing_opener',
+    closer: '#closing_ok,#closing_cancel',
+    closeByModalClick: false,
+    closeByEsc: false
+  });
+  </script>
+</body>
+</html>
