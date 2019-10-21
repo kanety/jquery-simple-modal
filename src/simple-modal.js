@@ -1,4 +1,5 @@
 import $ from 'jquery';
+import './simple-modal.scss';
 import { NAMESPACE } from './consts';
 
 const DEFAULTS = {

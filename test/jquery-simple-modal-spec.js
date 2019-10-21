@@ -1,3 +1,5 @@
+const NAMESPACE = 'simple-modal';
+
 describe('jquery-simple-modal', () => {
   beforeEach(() => {
     document.body.innerHTML = __html__['index.html'];
@@ -10,7 +12,7 @@ describe('jquery-simple-modal', () => {
  
     beforeEach(() => {
       $content = $('#basic');
-      $modal = $content.closest('.simple-modal');
+      $modal = $content.closest(`.${NAMESPACE}`);
       $opener = $('#basic_opener');
       $ok = $('#basic_ok');
       $cancel = $('#basic_cancel');
@@ -58,7 +60,7 @@ describe('jquery-simple-modal', () => {
  
     beforeEach(() => {
       $content = $('#callback');
-      $modal = $content.closest('.simple-modal');
+      $modal = $content.closest(`.${NAMESPACE}`);
       $opener = $('#callback_opener');
       $ok = $('#callback_ok');
 
@@ -79,11 +81,11 @@ describe('jquery-simple-modal', () => {
     beforeEach(() => {
       eval($('script').text());
       $content = $('#basic');
-      $content.data('simple-modal').destroy();
+      $content.data(NAMESPACE).destroy();
     });
 
     it('destroys existing object', () => {
-      expect($content.data('simple-modal')).toEqual(undefined);
+      expect($content.data(NAMESPACE)).toEqual(undefined);
     });
   });
 });
